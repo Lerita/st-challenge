@@ -13,7 +13,7 @@ let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem
 // let data = JSON.parse(localStorage.getItem('items'))
 
 updateInfo = () => {
-itemsQuantity.innerText = `${itemsArray.length} items`;
+    itemsQuantity.innerText = `${itemsArray.length} items`;
 }
 updateInfo();
 
@@ -26,13 +26,29 @@ const updateItems = () => {
         newItem.id = `item_${i}`;
         // newItem.children[0].src = ;
         newItem.children[1].innerText = `${itemsArray[i]}`;
-        newItem.children[2].innerHTML = `<i class="fas fa-pencil-alt" id="edit-${i}"></i>
-    <i class="fas fa-minus-circle" id="delete-${i}"></i>`;
+        newItem.children[2].innerHTML = `<i class="fas fa-pencil-alt" id="edit_${i}"></i>
+    <i class="fas fa-minus-circle" id="delete_${i}"></i>`;
         listContainer.appendChild(newItem);
+
+        let deleteItem = document.getElementById(`delete_${i}`)
+        deleteItem.onclick = () => {
+            itemsArray.splice(i, 1);
+            console.log('el click funciona');
+            updateItems();
+            updateInfo();
+        }
+
+        let editItem = document.getElementById(`edit_${i}`);
+        editItem.onclick = () => {
+            let itemToEdit = document.getElementById(`item_${i}`);
+            console.log('el click de edit funciona');
+            // itemToEdit
+        }
     }
 }
-
 updateItems();
+
+
 
 form.addEventListener('submit', function (e) {
     e.preventDefault()
@@ -47,15 +63,6 @@ form.addEventListener('submit', function (e) {
 //     updateItems(item);
 //   })
 
-
-
-    for (let i = 0; i < itemsArray.length; i++)
-        document.getElementById(`delete-${i}`).onclick = () => {
-            itemsArray.splice(i, 1);
-            console.log('el click funciona');
-            updateItems();
-            updateInfo();
-        }
 
 
 
