@@ -1,0 +1,114 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #222222;
+    color: $main-color;
+}
+
+header {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.items-facts {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    p {
+        width: 80px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+    }
+}
+
+.add-item {
+    color: white;
+    background-color: $main-color;
+    border-radius: 20px;
+    border: 2px solid #222222;
+    transition: all 0.2s ease-in;
+    
+    &:hover {
+        cursor: pointer;
+        background-color: #222222;
+        color: $main-color;
+        border-color: $main-color;
+    }
+}
+
+main {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item-container {
+    width: 600px;
+    display: flex;
+    flex-direction: row;
+    background-color: #000000;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+}
+
+.description {
+    width: 400px;
+    margin: 20px;
+    color: #ffffff;
+}
+
+.item-actions-icons {
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.fa-pencil-alt {
+    font-size: 14px;
+    color: #d17f13;
+    &:hover {
+        cursor: pointer; 
+        font-size: 16px;
+    }
+}
+.fa-minus-circle {
+    font-size: 14px;
+    color: #740000;
+    &:hover {
+        cursor: pointer;
+        font-size: 16px;
+    }
+}
+
+// .fas {
+//     &hover {
+//         font-size: 16px;
+//     }
+// }
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    bottom: 0;
+}
