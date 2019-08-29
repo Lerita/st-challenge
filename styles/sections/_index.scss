@@ -11,6 +11,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: $title-font;
 }
 
 .items-facts {
@@ -18,6 +19,7 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-size: 14px;
 
     p {
         width: 80px;
@@ -68,6 +70,7 @@ img {
     width: 400px;
     margin: 20px;
     color: #ffffff;
+    font-family: $text-font;
 }
 
 .item-actions-icons {
@@ -79,7 +82,7 @@ img {
 
 .fa-pencil-alt {
     font-size: 14px;
-    color: #d17f13;
+    color: #babd00;
     &:hover {
         cursor: pointer; 
         font-size: 16px;
@@ -87,11 +90,39 @@ img {
 }
 .fa-minus-circle {
     font-size: 14px;
-    color: #740000;
+    color: #c40000;
     &:hover {
         cursor: pointer;
         font-size: 16px;
     }
+}
+
+.fa-check {
+    font-size: 14px;
+    color: #008000;
+    
+    &:hover {
+        cursor: pointer;
+        font-size: 16px;
+    }
+}
+
+.fa-times {
+    font-size: 14px;
+    color: #ff0000;
+
+    &:hover {
+        cursor: pointer;
+        font-size: 16px;
+    }
+}
+
+.edit-description {
+    width: 350px;
+    height: 70px;
+    margin: 10px;
+    font-family: $text-font;
+    border-radius: 5px;
 }
 
 // .fas {
@@ -110,5 +141,47 @@ footer {
     display: flex;
     justify-content: flex-end;
     position: fixed;
+    font-size: 10px;
+    text-align: right;
     bottom: 0;
+}
+
+@media (max-width: 910px) {
+    .item-container {
+        width: 500px;
+    }
+
+    .description {
+        width: 300px;
+    }
+
+    .edit-description {
+        width: 250px;
+    }
+}
+
+@media (max-width: 550px) {
+    .item-container {
+        width: 300px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .description {
+        height: 50px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .edit-description {
+        height: 50px;
+    }
+
+    .item-actions-icons {
+        width: 200px;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 }

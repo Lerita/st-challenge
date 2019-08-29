@@ -355,6 +355,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Bree Serif", serif;
 }
 
 .items-facts {
@@ -362,6 +363,7 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-size: 14px;
 }
 .items-facts p {
   width: 80px;
@@ -410,6 +412,7 @@ img {
   width: 400px;
   margin: 20px;
   color: #ffffff;
+  font-family: "Open Sans", sans-serif;
 }
 
 .item-actions-icons {
@@ -421,7 +424,7 @@ img {
 
 .fa-pencil-alt {
   font-size: 14px;
-  color: #d17f13;
+  color: #babd00;
 }
 .fa-pencil-alt:hover {
   cursor: pointer;
@@ -430,11 +433,37 @@ img {
 
 .fa-minus-circle {
   font-size: 14px;
-  color: #740000;
+  color: #c40000;
 }
 .fa-minus-circle:hover {
   cursor: pointer;
   font-size: 16px;
+}
+
+.fa-check {
+  font-size: 14px;
+  color: #008000;
+}
+.fa-check:hover {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.fa-times {
+  font-size: 14px;
+  color: #ff0000;
+}
+.fa-times:hover {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.edit-description {
+  width: 350px;
+  height: 70px;
+  margin: 10px;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 5px;
 }
 
 form {
@@ -447,9 +476,49 @@ footer {
   display: flex;
   justify-content: flex-end;
   position: fixed;
+  font-size: 10px;
+  text-align: right;
   bottom: 0;
 }
 
+@media (max-width: 910px) {
+  .item-container {
+    width: 500px;
+  }
+
+  .description {
+    width: 300px;
+  }
+
+  .edit-description {
+    width: 250px;
+  }
+}
+@media (max-width: 550px) {
+  .item-container {
+    width: 300px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .description {
+    height: 50px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .edit-description {
+    height: 50px;
+  }
+
+  .item-actions-icons {
+    width: 200px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
 .pop-up-container {
   width: 100%;
   height: 100%;
@@ -481,16 +550,17 @@ footer {
   position: relative;
   border-radius: 10px;
   box-shadow: 1px 1px 20px 0.5px #0000007e;
+  font-family: "Open Sans", sans-serif;
 }
 
-.fa-times {
+.close {
   position: absolute;
   top: 5px;
   right: 7px;
   color: #ffffff;
   transition: all 0.2s;
 }
-.fa-times:hover {
+.close:hover {
   cursor: pointer;
   color: #222222;
 }
@@ -506,7 +576,7 @@ input {
   margin: 10px;
 }
 
-textarea {
+.add-description {
   width: 400px;
   height: 100px;
   margin: 10px;
@@ -542,6 +612,25 @@ button:hover {
 .stop-scrolling {
   height: 100%;
   overflow: hidden;
+}
+
+@media (max-width: 550px) {
+  .pop-up {
+    width: 400px;
+  }
+
+  .add-description {
+    width: 300px;
+  }
+}
+@media (max-width: 430px) {
+  .pop-up {
+    width: 250px;
+  }
+
+  .add-description {
+    width: 150px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

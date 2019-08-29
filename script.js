@@ -9,8 +9,6 @@ const editItem = document.getElementById('edit');
 const deleteItem = document.getElementById('delete');
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
 
-// localStorage.setItem('items', JSON.stringify(itemsArray))
-// let data = JSON.parse(localStorage.getItem('items'))
 
 updateInfo = () => {
     itemsQuantity.innerText = `${itemsArray.length} items`;
@@ -30,6 +28,33 @@ const updateItems = () => {
     <i class="fas fa-minus-circle" id="delete_${i}"></i>`;
         listContainer.appendChild(newItem);
 
+
+        let editItem = document.getElementById(`edit_${i}`);
+        editItem.onclick = () => {
+            let itemDescription = itemsArray[i];
+            newItem.children[1].innerHTML = `<textarea class="edit-description" id="description_${i}">${itemDescription}</textarea>`
+            newItem.children[2].innerHTML = `<i class="fas fa-check" id="accept_edit"></i>
+            <i class="fas fa-times" id="cancel_edit"></i>`
+            console.log('el click de edit funciona');
+
+            let acceptEdit = document.getElementById(`accept_edit`);
+            acceptEdit.onclick = () => {
+                let newDescription = document.getElementById(`description_${i}`).value;
+                itemsArray[i] = newDescription;
+                newItem.children[1].innerHTML = `<p>${newDescription}</p>`;
+                newItem.children[2].innerHTML = `<i class="fas fa-pencil-alt" id="edit_${i}"></i>
+                <i class="fas fa-minus-circle" id="delete_${i}"></i>`;
+                console.log('el accept click funciona');
+            }
+
+            let cancelEdit = document.getElementById(`cancel_edit`);
+            cancelEdit.onclick = () => {
+                newItem.children[1].innerHTML = `<p>${itemsArray[i]}</p>`;
+                newItem.children[2].innerHTML = `<i class="fas fa-pencil-alt" id="edit_${i}"></i>
+            <i class="fas fa-minus-circle" id="delete_${i}"></i>`
+            }
+        }
+
         let deleteItem = document.getElementById(`delete_${i}`)
         deleteItem.onclick = () => {
             itemsArray.splice(i, 1);
@@ -37,17 +62,23 @@ const updateItems = () => {
             updateItems();
             updateInfo();
         }
-
-        let editItem = document.getElementById(`edit_${i}`);
-        editItem.onclick = () => {
-            let itemToEdit = document.getElementById(`item_${i}`);
-            console.log('el click de edit funciona');
-            // itemToEdit
-        }
     }
 }
 updateItems();
 
+
+
+// let urlObject = window.URL || window.webkitURL;
+// document.getElementbyId('file').change(function(e) {
+//     let file;
+//     if ((file = this.files[0])) {
+//         img = document.getElementById('img');
+//         img.onerror = function() {
+//             alert( "not a valid file: " + file.type);
+//         };
+//         img.src = urlObject.createObjectURL(file);
+//     }
+// });
 
 
 form.addEventListener('submit', function (e) {
@@ -59,9 +90,6 @@ form.addEventListener('submit', function (e) {
     input.value = '';
 })
 
-//   data.forEach(item => {
-//     updateItems(item);
-//   })
 
 
 
