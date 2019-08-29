@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Challenge</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body id="body">
+    <header>
+        <h1>Challenge</h1>
+        <div class="items-facts">
+            <p id="items_quantity">items</p>
+            <p class="add-item" id="add_item">Add Item</p>
+        </div>
+    </header>
+
+    <main class="list-container" id="list">
+        <div class="item-container">
+            <img src="http://images.sequart.org/images/Carol-Danvers-660x346.jpg" />
+            <div class="description">
+                <p>Description</p>
+            </div>
+            <div class="item-actions-icons">
+                <i class="fas fa-pencil-alt" id="edit"></i>
+                <i class="fas fa-minus-circle" id="delete"></i>
+            </div>
+        </div>
+    </main>
+
+    <!------------------- POP-UP ADD ITEM --------------------------->
+
+    <section class="pop-up-container" id="pop_up">
+            <div class="close-outside" id="outside"></div>
+            <div class="pop-up">
+                <form id="form">
+                    <input type="file" accept=".jpg, .gif, .png">
+                    <textarea placeholder="Desciption" id="description"></textarea>
+                    <button id="close_popup">Add Item</button>
+                    <i class="fas fa-times" id="cancel"></i>
+                </form>
+            </div>
+    </section>
+
+    <footer>
+        <p>created by Valeria Massignani</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
