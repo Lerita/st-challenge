@@ -406,6 +406,7 @@ img {
   width: 100px;
   height: 100px;
   margin: 20px;
+  border-radius: 5px;
 }
 
 .description {
@@ -598,6 +599,28 @@ button:hover {
   border-color: #ffffff;
   background-color: #00885f;
   color: #ffffff;
+}
+
+.char-count {
+  color: #ffffff;
+}
+
+.too-long {
+  color: #ff0000;
+}
+
+.button-dissabled {
+  background-color: #ffffffb7;
+}
+.button-dissabled:hover {
+  cursor: default;
+  background-color: #ffffffb7;
+  color: #00885f;
+  border: 2px solid #00885f;
+}
+
+input {
+  border-radius: 5px;
 }
 
 .close-outside {

@@ -51,6 +51,7 @@ form {
     justify-content: cener;
     align-items: center;
 }
+
 input {
     margin: 10px;
 }
@@ -79,6 +80,29 @@ button {
         background-color: $main-color;
         color: #ffffff;
     }
+}
+
+.char-count {
+    color: #ffffff;
+}
+
+.too-long {
+    color: #ff0000;
+}
+
+.button-dissabled {
+    background-color: #ffffffb7;
+
+    &:hover {
+        cursor: default;
+        background-color: #ffffffb7;
+        color: $main-color;
+        border: 2px solid $main-color;
+    }
+}
+
+input {
+    border-radius: 5px;
 }
 
 .close-outside {

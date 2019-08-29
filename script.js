@@ -4,7 +4,7 @@ const itemsQuantity = document.getElementById('items_quantity');
 const listContainer = document.getElementById('list');
 const eachItem = document.getElementById('each_item');
 const form = document.getElementById('form');
-const input = document.getElementById('description');
+const descriptionInput = document.getElementById('description');
 const editItem = document.getElementById('edit');
 const deleteItem = document.getElementById('delete');
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
@@ -55,7 +55,7 @@ const updateItems = () => {
             }
         }
 
-        let deleteItem = document.getElementById(`delete_${i}`)
+        let deleteItem = document.getElementById(`delete_${i}`);
         deleteItem.onclick = () => {
             itemsArray.splice(i, 1);
             console.log('el click funciona');
@@ -80,16 +80,41 @@ updateItems();
 //     }
 // });
 
+const closePopUp = document.getElementById('close_popup');
+
 
 form.addEventListener('submit', function (e) {
     e.preventDefault()
 
-    itemsArray.push(input.value)
+
+    itemsArray.push(descriptionInput.value)
     localStorage.setItem('items', JSON.stringify(itemsArray))
     updateItems();
-    input.value = '';
+    descriptionInput.value = '';
 })
 
+descriptionInput.onkeyup = () => {
+
+    let characters = descriptionInput.value.length;
+    let charactersLeft = 300 - characters;
+    const characterCount = document.getElementById('char_count');
+    characterCount.innerText = charactersLeft;
+
+    if (characters > 300) {
+        closePopUp.disabled = true;
+        closePopUp.classList.add('button-dissabled');
+    } else {
+        closePopUp.disabled = false;
+        closePopUp.classList.remove('button-dissabled');
+    }
+
+    if (charactersLeft < 0) {
+        characterCount.classList.add('too-long');
+        characterCount.innerText = `${charactersLeft} - too many characters.`
+    } else {
+        characterCount.classList.remove('too-long');
+    }
+}
 
 
 
@@ -103,7 +128,6 @@ const body = document.getElementById('body');
 const popUp = document.getElementById('pop_up');
 const closeOutside = document.getElementById('outside');
 const cancel = document.getElementById('cancel');
-const closePopUp = document.getElementById('close_popup');
 
 addItem.onclick = () => {
     popUp.style.visibility = 'visible';
