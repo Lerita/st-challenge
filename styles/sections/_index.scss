@@ -145,9 +145,17 @@ img {
 .edit-description {
     width: 350px;
     height: 70px;
-    margin: 10px;
+    padding: 5px;
     font-family: $text-font;
+    font-size: 14px;
     border-radius: 5px;
+    border: 2px solid #000000;
+    outline: none;
+    transition: border 0.2s;
+
+    &:focus {
+        border: 2px solid #8b8989;
+    }
 }
 
 

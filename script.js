@@ -3,6 +3,7 @@ const listContainer = document.getElementById('list');
 const eachItem = document.getElementById('each_item');
 const form = document.getElementById('form');
 const descriptionInput = document.getElementById('description');
+const listModel = listContainer.children[0];
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : ["item 1", "item 2", "item 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptate unde, incidunt modi, laborum eligendi impedit minus dolorem sint eum sed, sit ducimus! Ut soluta iure, tempora expedita placeat ad."]
 
 /************ UPDATE ITEMS COUNT ***********/
@@ -82,7 +83,6 @@ const deleteItem = i => {
 /****************** UPDATE ITEMS *****************/
 
 const updateItems = () => {
-    const listModel = listContainer.children[0];
     listContainer.innerHTML = '';
 
     for (let i = 0; i < itemsArray.length; i++) {
