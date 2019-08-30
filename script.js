@@ -43,6 +43,7 @@ const updateItems = () => {
                 newItem.children[2].innerHTML = `<i class="fas fa-pencil-alt" id="edit_${i}"></i>
                 <i class="fas fa-minus-circle" id="delete_${i}"></i>`;
                 console.log('el accept click funciona');
+                localStorage.setItem('items', JSON.stringify(itemsArray))
             }
 
             let cancelEdit = document.getElementById(`cancel_edit`);
@@ -59,24 +60,13 @@ const updateItems = () => {
             console.log('el click funciona');
             updateItems();
             updateInfo();
+            localStorage.setItem('items', JSON.stringify(itemsArray))
         }
     }
 }
 updateItems();
 
 
-
-// let urlObject = window.URL || window.webkitURL;
-// document.getElementbyId('file').change(function(e) {
-//     let file;
-//     if ((file = this.files[0])) {
-//         img = document.getElementById('img');
-//         img.onerror = function() {
-//             alert( "not a valid file: " + file.type);
-//         };
-//         img.src = urlObject.createObjectURL(file);
-//     }
-// });
 
 /************** POP-UP *****************/
 
@@ -104,19 +94,15 @@ descriptionInput.onkeyup = () => {
     const characterCount = document.getElementById('char_count');
     characterCount.innerText = charactersLeft;
 
-    if (characters > 300) {
-        closePopUp.disabled = true;
-        closePopUp.classList.add('button-dissabled');
-    } else {
-        closePopUp.disabled = false;
-        closePopUp.classList.remove('button-dissabled');
-    }
-
     if (charactersLeft < 0) {
         characterCount.classList.add('too-long');
         characterCount.innerText = `${charactersLeft} - too many characters.`
+        closePopUp.disabled = true;
+        closePopUp.classList.add('button-dissabled');
     } else {
         characterCount.classList.remove('too-long');
+        closePopUp.disabled = false;
+        closePopUp.classList.remove('button-dissabled');
     }
 }
 
@@ -135,7 +121,7 @@ closeOutside.onclick = () => {
 closePopUp.onclick = () => {
     popUp.style.visibility = 'hidden';
     body.classList.remove('stop-scrolling');
-    location.reload();
+    localStorage.setItem('items', JSON.stringify(itemsArray))
 }
 
 cancel.onclick = () => {
