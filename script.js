@@ -78,8 +78,15 @@ updateItems();
 //     }
 // });
 
-const closePopUp = document.getElementById('close_popup');
+/************** POP-UP *****************/
 
+
+const closePopUp = document.getElementById('close_popup');
+const addItem = document.getElementById('add_item');
+const body = document.getElementById('body');
+const popUp = document.getElementById('pop_up');
+const closeOutside = document.getElementById('outside');
+const cancel = document.getElementById('cancel');
 
 form.addEventListener('submit', function (e) {
     e.preventDefault()
@@ -92,7 +99,6 @@ form.addEventListener('submit', function (e) {
 })
 
 descriptionInput.onkeyup = () => {
-
     let characters = descriptionInput.value.length;
     let charactersLeft = 300 - characters;
     const characterCount = document.getElementById('char_count');
@@ -115,17 +121,6 @@ descriptionInput.onkeyup = () => {
 }
 
 
-
-
-// let sortItems = document.getElementById('list');
-// let sortable = Sortable.create(sortItems);
-
-
-const addItem = document.getElementById('add_item');
-const body = document.getElementById('body');
-const popUp = document.getElementById('pop_up');
-const closeOutside = document.getElementById('outside');
-const cancel = document.getElementById('cancel');
 
 addItem.onclick = () => {
     popUp.style.visibility = 'visible';

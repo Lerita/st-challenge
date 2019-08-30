@@ -12,6 +12,9 @@
 </head>
 
 <body id="body">
+
+    <!------------------- HEADER --------------------------->
+
     <header>
         <h1>Challenge</h1>
         <div class="items-facts">
@@ -19,6 +22,8 @@
             <p class="add-item" id="add_item">Add Item</p>
         </div>
     </header>
+
+    <!------------------- LIST OF ITEMS --------------------------->
 
     <main class="list-container" id="list">
         <div class="item-container">
@@ -36,17 +41,19 @@
     <!------------------- POP-UP ADD ITEM --------------------------->
 
     <section class="pop-up-container" id="pop_up">
-            <div class="close-outside" id="outside"></div>
-            <div class="pop-up">
-                <form id="form">
-                    <input type="file" id="file" accept=".jpg, .gif, .png" class="input-img">
-                    <textarea placeholder="Desciption" id="description" class="add-description"></textarea>
-                    <label class="char-count" id="char_count">max. 300 characters</label>
-                    <button id="close_popup">Add Item</button>
-                    <i class="fas fa-times close" id="cancel"></i>
-                </form>
-            </div>
+        <div class="close-outside" id="outside"></div>
+        <div class="pop-up">
+            <form id="form">
+                <input type="file" id="file" accept=".jpg, .gif, .png" class="input-img">
+                <textarea placeholder="Desciption" id="description" class="add-description"></textarea>
+                <label class="char-count" id="char_count">300 characters max.</label>
+                <button id="close_popup">Add Item</button>
+                <i class="fas fa-times close" id="cancel"></i>
+            </form>
+        </div>
     </section>
+
+    <!------------------- FOOTER --------------------------->
 
     <footer>
         <p>created by<br /> Valeria Massignani</p>
