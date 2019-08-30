@@ -3,20 +3,15 @@ const listContainer = document.getElementById('list');
 const eachItem = document.getElementById('each_item');
 const form = document.getElementById('form');
 const descriptionInput = document.getElementById('description');
-let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
+let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : ["item 1", "item 2", "item 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptate unde, incidunt modi, laborum eligendi impedit minus dolorem sint eum sed, sit ducimus! Ut soluta iure, tempora expedita placeat ad."]
 
-/************ UPDATE LIST OF ITEMS ***********/
+/************ UPDATE ITEMS COUNT ***********/
 
 updateInfo = () => {
     itemsQuantity.innerText = `${itemsArray.length} items`;
 }
 updateInfo();
 
-const updateLocalStorage = () => {
-    localStorage.setItem('items', JSON.stringify(itemsArray))
-    updateItems();
-    updateInfo();
-}
 
 
 /***************** EDIT ITEMS ***************/
@@ -63,7 +58,7 @@ const editItem = (newItem, i) => {
 
     editIcon.onclick = () => {
         let itemDescription = itemsArray[i];
-        newItem.children[1].innerHTML = `<textarea class="edit-description" id="description_${i}">${itemDescription}</textarea>`;
+        newItem.children[1].innerHTML = `<textarea maxlength="300" class="edit-description" id="description_${i}">${itemDescription}</textarea>`;
         editIcon.classList.add('hide');
         deleteIcon.classList.add('hide');
         acceptIcon.classList.remove('hide');
@@ -84,7 +79,7 @@ const deleteItem = i => {
 }
 
 
-/****************** NEW ITEMS *****************/
+/****************** UPDATE ITEMS *****************/
 
 const updateItems = () => {
     const listModel = listContainer.children[0];
@@ -100,16 +95,22 @@ const updateItems = () => {
     <i class="fas fa-times hide" id="cancel_edit_${i}"></i>`;
         listContainer.appendChild(newItem);
 
-
-
         editItem(newItem, i);
         deleteItem(i);
+        // updateLocalStorage();
     }
 }
 updateItems();
 
-/************** POP-UP *****************/
+const updateLocalStorage = () => {
+    localStorage.setItem('items', JSON.stringify(itemsArray))
+    updateItems();
+    updateInfo();
+}
 
+
+
+/************** POP-UP *****************/
 
 const addItem = document.getElementById('add_item');
 const openPopUp = document.getElementById('open_popup');
