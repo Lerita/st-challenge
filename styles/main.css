@@ -350,6 +350,7 @@ body {
   color: #00885f;
 }
 
+/************ HEADER ***********/
 header {
   width: 80%;
   display: flex;
@@ -386,6 +387,7 @@ header {
   border-color: #00885f;
 }
 
+/************ ITEMS ***********/
 main {
   width: 80%;
   display: flex;
@@ -428,7 +430,7 @@ img {
   color: #babd00;
   position: absolute;
   top: 35px;
-  right: -10px;
+  right: 20px;
 }
 .fa-pencil-alt:hover {
   cursor: pointer;
@@ -440,15 +442,11 @@ img {
   color: #c40000;
   position: absolute;
   top: 85px;
-  right: -10px;
+  right: 20px;
 }
 .fa-minus-circle:hover {
   cursor: pointer;
   font-size: 16px;
-}
-
-.hide {
-  visibility: hidden;
 }
 
 .fa-check {
@@ -456,7 +454,7 @@ img {
   color: #008000;
   position: absolute;
   top: 35px;
-  right: 10px;
+  right: 20px;
 }
 .fa-check:hover {
   cursor: pointer;
@@ -468,11 +466,15 @@ img {
   color: #ff0000;
   position: absolute;
   top: 85px;
-  right: 10px;
+  right: 20px;
 }
 .fa-times:hover {
   cursor: pointer;
   font-size: 16px;
+}
+
+.hide {
+  visibility: hidden;
 }
 
 .edit-description {
@@ -483,11 +485,7 @@ img {
   border-radius: 5px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
-
+/************ FOOTER ***********/
 footer {
   width: 95%;
   display: flex;
@@ -583,6 +581,20 @@ footer {
   color: #222222;
 }
 
+.close-outside {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -594,13 +606,35 @@ input {
   margin: 10px;
 }
 
+/************ DESCRIPTION TEXTAREA ***********/
 .add-description {
   width: 400px;
   height: 100px;
   margin: 10px;
+  padding: 10px 15px;
+  border: 2px solid #00885f;
   border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border 0.2s;
+}
+.add-description:focus {
+  border: 3px solid #00412d;
 }
 
+.input-too-long:focus {
+  border-color: #b30000;
+}
+
+.char-count {
+  color: #ffffff;
+}
+
+.too-long {
+  color: #ff0000;
+}
+
+/************ ADD ITEM BUTTON ***********/
 button {
   width: 100px;
   height: 40px;
@@ -618,14 +652,6 @@ button:hover {
   color: #ffffff;
 }
 
-.char-count {
-  color: #ffffff;
-}
-
-.too-long {
-  color: #ff0000;
-}
-
 .button-dissabled {
   background-color: #ffffffb7;
 }
@@ -634,24 +660,6 @@ button:hover {
   background-color: #ffffffb7;
   color: #00885f;
   border: 2px solid #00885f;
-}
-
-input {
-  border-radius: 5px;
-}
-
-.close-outside {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  left: 0;
-}
-
-.stop-scrolling {
-  height: 100%;
-  overflow: hidden;
 }
 
 /******************** RESPONSIVE ***********************/

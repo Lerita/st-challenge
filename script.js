@@ -3,15 +3,88 @@ const listContainer = document.getElementById('list');
 const eachItem = document.getElementById('each_item');
 const form = document.getElementById('form');
 const descriptionInput = document.getElementById('description');
-const editItem = document.getElementById('edit');
-const deleteItem = document.getElementById('delete');
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
 
+/************ UPDATE LIST OF ITEMS ***********/
 
 updateInfo = () => {
     itemsQuantity.innerText = `${itemsArray.length} items`;
 }
 updateInfo();
+
+const updateLocalStorage = () => {
+    localStorage.setItem('items', JSON.stringify(itemsArray))
+    updateItems();
+    updateInfo();
+}
+
+
+/***************** EDIT ITEMS ***************/
+
+const acceptEdit = (newItem, i) => {
+    const deleteIcon = document.getElementById(`delete_${i}`);
+    const editIcon = document.getElementById(`edit_${i}`);
+    const acceptIcon = document.getElementById(`accept_edit_${i}`);
+    const cancelIcon = document.getElementById(`cancel_edit_${i}`);
+    
+    acceptIcon.onclick = () => {
+        let newDescription = document.getElementById(`description_${i}`).value;
+        itemsArray[i] = newDescription;
+        newItem.children[1].innerHTML = `<p>${newDescription}</p>`;
+        editIcon.classList.remove('hide');
+        deleteIcon.classList.remove('hide');
+        acceptIcon.classList.add('hide');
+        cancelIcon.classList.add('hide');
+        console.log('el accept click funciona');
+        localStorage.setItem('items', JSON.stringify(itemsArray))
+    }
+}
+
+const cancelEdit = (newItem, i) => {
+    const deleteIcon = document.getElementById(`delete_${i}`);
+    const editIcon = document.getElementById(`edit_${i}`);
+    const acceptIcon = document.getElementById(`accept_edit_${i}`);
+    const cancelIcon = document.getElementById(`cancel_edit_${i}`);
+    
+        cancelIcon.onclick = () => {
+        newItem.children[1].innerHTML = `<p>${itemsArray[i]}</p>`;
+        editIcon.classList.remove('hide');
+        deleteIcon.classList.remove('hide');
+        acceptIcon.classList.add('hide');
+        cancelIcon.classList.add('hide');
+    }
+}
+
+const editItem = (newItem, i) => {
+    const deleteIcon = document.getElementById(`delete_${i}`);
+    const editIcon = document.getElementById(`edit_${i}`);
+    const acceptIcon = document.getElementById(`accept_edit_${i}`);
+    const cancelIcon = document.getElementById(`cancel_edit_${i}`);
+
+    editIcon.onclick = () => {
+        let itemDescription = itemsArray[i];
+        newItem.children[1].innerHTML = `<textarea class="edit-description" id="description_${i}">${itemDescription}</textarea>`;
+        editIcon.classList.add('hide');
+        deleteIcon.classList.add('hide');
+        acceptIcon.classList.remove('hide');
+        cancelIcon.classList.remove('hide');
+
+        acceptEdit(newItem, i);
+        cancelEdit(newItem, i);
+    }
+}
+
+const deleteItem = i => {
+    const deleteIcon = document.getElementById(`delete_${i}`);
+    deleteIcon.onclick = () => {
+        itemsArray.splice(i, 1);
+
+        updateLocalStorage();
+    }
+}
+
+
+/****************** NEW ITEMS *****************/
 
 const updateItems = () => {
     const listModel = listContainer.children[0];
@@ -27,58 +100,19 @@ const updateItems = () => {
     <i class="fas fa-times hide" id="cancel_edit_${i}"></i>`;
         listContainer.appendChild(newItem);
 
-        const deleteItem = document.getElementById(`delete_${i}`);
-        const editItem = document.getElementById(`edit_${i}`);
-        const acceptEdit = document.getElementById(`accept_edit_${i}`);
-        const cancelEdit = document.getElementById(`cancel_edit_${i}`);
 
-        editItem.onclick = () => {
-            let itemDescription = itemsArray[i];
-            newItem.children[1].innerHTML = `<textarea class="edit-description" id="description_${i}">${itemDescription}</textarea>`;
-            editItem.classList.add('hide');
-            deleteItem.classList.add('hide');
-            acceptEdit.classList.remove('hide');
-            cancelEdit.classList.remove('hide');
 
-            acceptEdit.onclick = () => {
-                let newDescription = document.getElementById(`description_${i}`).value;
-                itemsArray[i] = newDescription;
-                newItem.children[1].innerHTML = `<p>${newDescription}</p>`;
-                editItem.classList.remove('hide');
-                deleteItem.classList.remove('hide');
-                acceptEdit.classList.add('hide');
-                cancelEdit.classList.add('hide');
-                console.log('el accept click funciona');
-                localStorage.setItem('items', JSON.stringify(itemsArray))
-            }
-
-            cancelEdit.onclick = () => {
-                newItem.children[1].innerHTML = `<p>${itemsArray[i]}</p>`;
-                editItem.classList.remove('hide');
-                deleteItem.classList.remove('hide');
-                acceptEdit.classList.add('hide');
-                cancelEdit.classList.add('hide');
-            }
-        }
-
-        deleteItem.onclick = () => {
-            itemsArray.splice(i, 1);
-
-            updateItems();
-            updateInfo();
-            localStorage.setItem('items', JSON.stringify(itemsArray))
-        }
+        editItem(newItem, i);
+        deleteItem(i);
     }
 }
 updateItems();
 
-
-
 /************** POP-UP *****************/
 
 
-const closePopUp = document.getElementById('close_popup');
 const addItem = document.getElementById('add_item');
+const openPopUp = document.getElementById('open_popup');
 const body = document.getElementById('body');
 const popUp = document.getElementById('pop_up');
 const closeOutside = document.getElementById('outside');
@@ -89,8 +123,8 @@ form.addEventListener('submit', function (e) {
 
 
     itemsArray.push(descriptionInput.value)
-    localStorage.setItem('items', JSON.stringify(itemsArray))
-    updateItems();
+    updateLocalStorage();
+
     descriptionInput.value = '';
 })
 
@@ -102,18 +136,20 @@ descriptionInput.onkeyup = () => {
 
     if (charactersLeft < 0) {
         characterCount.classList.add('too-long');
+        descriptionInput.classList.add('input-too-long');
         characterCount.innerText = `${charactersLeft} - too many characters.`
-        closePopUp.disabled = true;
-        closePopUp.classList.add('button-dissabled');
+        addItem.disabled = true;
+        addItem.classList.add('button-dissabled');
     } else {
         characterCount.classList.remove('too-long');
-        closePopUp.disabled = false;
-        closePopUp.classList.remove('button-dissabled');
+        descriptionInput.classList.remove('input-too-long');
+        addItem.disabled = false;
+        addItem.classList.remove('button-dissabled');
     }
 }
 
 
-addItem.onclick = () => {
+openPopUp.onclick = () => {
     popUp.style.visibility = 'visible';
     body.classList.add('stop-scrolling');
 }
@@ -123,10 +159,9 @@ closeOutside.onclick = () => {
     body.classList.remove('stop-scrolling');
 };
 
-closePopUp.onclick = () => {
+addItem.onclick = () => {
     popUp.style.visibility = 'hidden';
     body.classList.remove('stop-scrolling');
-    localStorage.setItem('items', JSON.stringify(itemsArray))
 }
 
 cancel.onclick = () => {

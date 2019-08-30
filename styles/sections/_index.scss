@@ -6,6 +6,8 @@ body {
     color: $main-color;
 }
 
+/************ HEADER ***********/
+
 header {
     width: 80%;
     display: flex;
@@ -43,6 +45,8 @@ header {
         border-color: $main-color;
     }
 }
+
+/************ ITEMS ***********/
 
 main {
     width: 80%;
@@ -86,7 +90,7 @@ img {
     color: #babd00;
     position: absolute;
     top: 35px;
-    right: -10px;
+    right: 20px;
 
     &:hover {
         cursor: pointer; 
@@ -99,7 +103,7 @@ img {
     color: #c40000;
     position: absolute;
     top: 85px;
-    right: -10px;
+    right: 20px;
 
     &:hover {
         cursor: pointer;
@@ -107,18 +111,12 @@ img {
     }
 }
 
-.hide {
-    visibility: hidden;
-}
-
-
-
 .fa-check {
     font-size: 14px;
     color: #008000;
     position: absolute;
     top: 35px;
-    right: 10px;
+    right: 20px;
     
     &:hover {
         cursor: pointer;
@@ -131,12 +129,16 @@ img {
     color: #ff0000;
     position: absolute;
     top: 85px;
-    right: 10px;
+    right: 20px;
 
     &:hover {
         cursor: pointer;
         font-size: 16px;
     }
+}
+
+.hide {
+    visibility: hidden;
 }
 
 .edit-description {
@@ -148,11 +150,7 @@ img {
 }
 
 
-
-form {
-    display: flex;
-    flex-direction: column;
-}
+/************ FOOTER ***********/
 
 footer {
     width: 95%;
@@ -163,6 +161,7 @@ footer {
     text-align: right;
     bottom: 0;
 }
+
 
 /******************** RESPONSIVE ***********************/
 
