@@ -19,45 +19,51 @@ const updateItems = () => {
 
     for (let i = 0; i < itemsArray.length; i++) {
         let newItem = listModel.cloneNode(true);
-        // newItem.id = `item_${i}`;
         // newItem.children[0].src = ;
         newItem.children[1].innerText = `${itemsArray[i]}`;
         newItem.children[2].innerHTML = `<i class="fas fa-pencil-alt" id="edit_${i}"></i>
-    <i class="fas fa-minus-circle" id="delete_${i}"></i>`;
+    <i class="fas fa-minus-circle" id="delete_${i}"></i>
+    <i class="fas fa-check hide" id="accept_edit_${i}"></i>
+    <i class="fas fa-times hide" id="cancel_edit_${i}"></i>`;
         listContainer.appendChild(newItem);
 
+        const deleteItem = document.getElementById(`delete_${i}`);
+        const editItem = document.getElementById(`edit_${i}`);
+        const acceptEdit = document.getElementById(`accept_edit_${i}`);
+        const cancelEdit = document.getElementById(`cancel_edit_${i}`);
 
-        let editItem = document.getElementById(`edit_${i}`);
         editItem.onclick = () => {
             let itemDescription = itemsArray[i];
-            newItem.children[1].innerHTML = `<textarea class="edit-description" id="description_${i}">${itemDescription}</textarea>`
-            newItem.children[2].innerHTML = `<i class="fas fa-check" id="accept_edit"></i>
-            <i class="fas fa-times" id="cancel_edit"></i>`
-            console.log('el click de edit funciona');
+            newItem.children[1].innerHTML = `<textarea class="edit-description" id="description_${i}">${itemDescription}</textarea>`;
+            editItem.classList.add('hide');
+            deleteItem.classList.add('hide');
+            acceptEdit.classList.remove('hide');
+            cancelEdit.classList.remove('hide');
 
-            let acceptEdit = document.getElementById(`accept_edit`);
             acceptEdit.onclick = () => {
                 let newDescription = document.getElementById(`description_${i}`).value;
                 itemsArray[i] = newDescription;
                 newItem.children[1].innerHTML = `<p>${newDescription}</p>`;
-                newItem.children[2].innerHTML = `<i class="fas fa-pencil-alt" id="edit_${i}"></i>
-                <i class="fas fa-minus-circle" id="delete_${i}"></i>`;
+                editItem.classList.remove('hide');
+                deleteItem.classList.remove('hide');
+                acceptEdit.classList.add('hide');
+                cancelEdit.classList.add('hide');
                 console.log('el accept click funciona');
                 localStorage.setItem('items', JSON.stringify(itemsArray))
             }
 
-            let cancelEdit = document.getElementById(`cancel_edit`);
             cancelEdit.onclick = () => {
                 newItem.children[1].innerHTML = `<p>${itemsArray[i]}</p>`;
-                newItem.children[2].innerHTML = `<i class="fas fa-pencil-alt" id="edit_${i}"></i>
-            <i class="fas fa-minus-circle" id="delete_${i}"></i>`
+                editItem.classList.remove('hide');
+                deleteItem.classList.remove('hide');
+                acceptEdit.classList.add('hide');
+                cancelEdit.classList.add('hide');
             }
         }
 
-        let deleteItem = document.getElementById(`delete_${i}`);
         deleteItem.onclick = () => {
             itemsArray.splice(i, 1);
-            console.log('el click funciona');
+
             updateItems();
             updateInfo();
             localStorage.setItem('items', JSON.stringify(itemsArray))
@@ -105,7 +111,6 @@ descriptionInput.onkeyup = () => {
         closePopUp.classList.remove('button-dissabled');
     }
 }
-
 
 
 addItem.onclick = () => {

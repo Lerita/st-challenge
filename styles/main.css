@@ -420,12 +420,15 @@ img {
   width: 50px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  position: relative;
 }
 
 .fa-pencil-alt {
   font-size: 14px;
   color: #babd00;
+  position: absolute;
+  top: 35px;
+  right: -10px;
 }
 .fa-pencil-alt:hover {
   cursor: pointer;
@@ -435,15 +438,25 @@ img {
 .fa-minus-circle {
   font-size: 14px;
   color: #c40000;
+  position: absolute;
+  top: 85px;
+  right: -10px;
 }
 .fa-minus-circle:hover {
   cursor: pointer;
   font-size: 16px;
 }
 
+.hide {
+  visibility: hidden;
+}
+
 .fa-check {
   font-size: 14px;
   color: #008000;
+  position: absolute;
+  top: 35px;
+  right: 10px;
 }
 .fa-check:hover {
   cursor: pointer;
@@ -453,6 +466,9 @@ img {
 .fa-times {
   font-size: 14px;
   color: #ff0000;
+  position: absolute;
+  top: 85px;
+  right: 10px;
 }
 .fa-times:hover {
   cursor: pointer;
