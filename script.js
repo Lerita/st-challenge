@@ -1,5 +1,3 @@
-// import Sortable from 'sortablejs';
-
 const itemsQuantity = document.getElementById('items_quantity');
 const listContainer = document.getElementById('list');
 const eachItem = document.getElementById('each_item');
@@ -21,7 +19,7 @@ const updateItems = () => {
 
     for (let i = 0; i < itemsArray.length; i++) {
         let newItem = listModel.cloneNode(true);
-        newItem.id = `item_${i}`;
+        // newItem.id = `item_${i}`;
         // newItem.children[0].src = ;
         newItem.children[1].innerText = `${itemsArray[i]}`;
         newItem.children[2].innerHTML = `<i class="fas fa-pencil-alt" id="edit_${i}"></i>
