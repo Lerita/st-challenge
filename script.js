@@ -25,7 +25,7 @@ const acceptEdit = (newItem, i) => {
     const cancelIcon = document.getElementById(`cancel_edit_${i}`);
     const editImgIcon = document.getElementById(`edit_img_${i}`);
 
-    
+
     acceptIcon.onclick = () => {
         let newDescription = document.getElementById(`description_${i}`).value;
 
@@ -48,8 +48,8 @@ const cancelEdit = (newItem, i) => {
     const cancelIcon = document.getElementById(`cancel_edit_${i}`);
     const editImgIcon = document.getElementById(`edit_img_${i}`);
 
-    
-        cancelIcon.onclick = () => {
+
+    cancelIcon.onclick = () => {
         newItem.children[0].style.backgroundImage = `url('${imagesArray[i]}')`;
         newItem.children[1].innerHTML = `<p>${itemsArray[i]}</p>`;
         editIcon.classList.remove('hide');
@@ -138,11 +138,12 @@ const cancel = document.getElementById('cancel');
 form.addEventListener('submit', function (e) {
     e.preventDefault()
 
-    if (file.value.length !== 0){
-    imagesArray.push(file.value)
-    }else {
+    if (file.value.length !== 0) {
+        imagesArray.push(file.value)
+    } else {
         imagesArray.push('https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg');
     }
+    
     itemsArray.push(descriptionInput.value)
     updateLocalStorage();
 
