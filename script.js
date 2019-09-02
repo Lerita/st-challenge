@@ -5,6 +5,7 @@ const form = document.getElementById('form');
 const descriptionInput = document.getElementById('description');
 const listModel = listContainer.children[0];
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : ["item 1", "item 2", "item 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptate unde, incidunt modi, laborum eligendi impedit minus dolorem sint eum sed, sit ducimus! Ut soluta iure, tempora expedita placeat ad."]
+let imagesArray = localStorage.getItem('imgs') ? JSON.parse(localStorage.getItem('imgs')) : ["https://66.media.tumblr.com/affb924a2c7bb80929c5638a55582494/tumblr_pkigu4CdnH1r3me15_400.jpg", "https://66.media.tumblr.com/acd93c6bcfb44e9f25c4894b588b1261/tumblr_inline_pb42aelRJ01vnku4x_1280.jpg", "https://www.ujackets.com/wp-content/uploads/2019/02/Captain-Marvel-Carol-Danvers-Jacket-1.jpg"];
 
 /************ UPDATE ITEMS COUNT ***********/
 
@@ -22,16 +23,20 @@ const acceptEdit = (newItem, i) => {
     const editIcon = document.getElementById(`edit_${i}`);
     const acceptIcon = document.getElementById(`accept_edit_${i}`);
     const cancelIcon = document.getElementById(`cancel_edit_${i}`);
+    const editImgIcon = document.getElementById(`edit_img_${i}`);
+
     
     acceptIcon.onclick = () => {
         let newDescription = document.getElementById(`description_${i}`).value;
+
         itemsArray[i] = newDescription;
         newItem.children[1].innerHTML = `<p>${newDescription}</p>`;
         editIcon.classList.remove('hide');
         deleteIcon.classList.remove('hide');
         acceptIcon.classList.add('hide');
         cancelIcon.classList.add('hide');
-        console.log('el accept click funciona');
+        editImgIcon.classList.add('hide');
+
         localStorage.setItem('items', JSON.stringify(itemsArray))
     }
 }
@@ -41,21 +46,28 @@ const cancelEdit = (newItem, i) => {
     const editIcon = document.getElementById(`edit_${i}`);
     const acceptIcon = document.getElementById(`accept_edit_${i}`);
     const cancelIcon = document.getElementById(`cancel_edit_${i}`);
+    const editImgIcon = document.getElementById(`edit_img_${i}`);
+
     
         cancelIcon.onclick = () => {
+        newItem.children[0].style.backgroundImage = `url('${imagesArray[i]}')`;
         newItem.children[1].innerHTML = `<p>${itemsArray[i]}</p>`;
         editIcon.classList.remove('hide');
         deleteIcon.classList.remove('hide');
         acceptIcon.classList.add('hide');
         cancelIcon.classList.add('hide');
+        editImgIcon.classList.add('hide');
     }
 }
+
 
 const editItem = (newItem, i) => {
     const deleteIcon = document.getElementById(`delete_${i}`);
     const editIcon = document.getElementById(`edit_${i}`);
     const acceptIcon = document.getElementById(`accept_edit_${i}`);
     const cancelIcon = document.getElementById(`cancel_edit_${i}`);
+    const editImgIcon = document.getElementById(`edit_img_${i}`);
+
 
     editIcon.onclick = () => {
         let itemDescription = itemsArray[i];
@@ -64,6 +76,8 @@ const editItem = (newItem, i) => {
         deleteIcon.classList.add('hide');
         acceptIcon.classList.remove('hide');
         cancelIcon.classList.remove('hide');
+        editImgIcon.classList.remove('hide');
+
 
         acceptEdit(newItem, i);
         cancelEdit(newItem, i);
@@ -73,6 +87,7 @@ const editItem = (newItem, i) => {
 const deleteItem = i => {
     const deleteIcon = document.getElementById(`delete_${i}`);
     deleteIcon.onclick = () => {
+        imagesArray.splice(i, 1);
         itemsArray.splice(i, 1);
 
         updateLocalStorage();
@@ -87,7 +102,8 @@ const updateItems = () => {
 
     for (let i = 0; i < itemsArray.length; i++) {
         let newItem = listModel.cloneNode(true);
-        // newItem.children[0].src = ;
+        newItem.children[0].style.backgroundImage = `url('${imagesArray[i]}')`;
+        newItem.children[0].innerHTML = `<i class="far fa-edit hide" id="edit_img_${i}"></i>`
         newItem.children[1].innerText = `${itemsArray[i]}`;
         newItem.children[2].innerHTML = `<i class="fas fa-pencil-alt" id="edit_${i}"></i>
     <i class="fas fa-minus-circle" id="delete_${i}"></i>
@@ -97,12 +113,12 @@ const updateItems = () => {
 
         editItem(newItem, i);
         deleteItem(i);
-        // updateLocalStorage();
     }
 }
 updateItems();
 
 const updateLocalStorage = () => {
+    localStorage.setItem('imgs', JSON.stringify(imagesArray))
     localStorage.setItem('items', JSON.stringify(itemsArray))
     updateItems();
     updateInfo();
@@ -122,7 +138,11 @@ const cancel = document.getElementById('cancel');
 form.addEventListener('submit', function (e) {
     e.preventDefault()
 
-
+    if (file.value.length !== 0){
+    imagesArray.push(file.value)
+    }else {
+        imagesArray.push('https://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg');
+    }
     itemsArray.push(descriptionInput.value)
     updateLocalStorage();
 

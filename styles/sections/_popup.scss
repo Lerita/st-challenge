@@ -66,8 +66,56 @@ form {
     align-items: center;
 }
 
+
+
+/************ IMAGE INPUT ***********/
+
+.image-url-container {
+    width: 400px;
+    display: flex;
+
+    label {
+        height: 47px;
+        line-height: 47px;
+        color: #ffffff;
+        text-align: center;
+        margin-left: 10px;
+    }
+}
+
+.add-image {
+    width: 300px;
+    padding: 3px;
+    border: 2px solid $main-color;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border 0.2s;
+
+    &:focus {
+        border: 2px solid #00412d;
+    }
+}
+
 input {
+    margin: 10px 5px;
+    // display: none;
+}
+
+.input-img {
+    width: 150px;
+    height: 30px;
     margin: 10px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #005038;
+    color: #fff;
+    border-radius: 5px;
+    border: 1px solid #fff;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 

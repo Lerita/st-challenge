@@ -404,11 +404,16 @@ main {
   border-radius: 5px;
 }
 
-img {
+.img {
   width: 100px;
   height: 100px;
   margin: 20px;
   border-radius: 5px;
+  background-image: url("https://66.media.tumblr.com/affb924a2c7bb80929c5638a55582494/tumblr_pkigu4CdnH1r3me15_400.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
 }
 
 .description {
@@ -458,6 +463,21 @@ img {
   right: 20px;
 }
 .fa-check:hover {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.fa-edit {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  background-color: #dcdcdc6e;
+  color: #000000;
+  font-size: 18px;
+}
+.fa-edit:hover {
   cursor: pointer;
   font-size: 16px;
 }
@@ -526,7 +546,6 @@ footer {
   }
 
   .description {
-    height: 50px;
     margin-top: 10px;
     text-align: center;
   }
@@ -541,6 +560,32 @@ footer {
     justify-content: space-evenly;
     margin-top: 20px;
     margin-bottom: 20px;
+  }
+
+  .fa-pencil-alt {
+    width: 14px;
+    top: -10px;
+    left: 50px;
+  }
+
+  .fa-minus-circle {
+    top: -10px;
+    right: 50px;
+  }
+
+  .fa-check {
+    width: 14px;
+    top: -10px;
+    left: 50px;
+  }
+
+  .fa-times {
+    top: -10px;
+    right: 50px;
+  }
+
+  .img {
+    margin-bottom: 5px;
   }
 }
 .pop-up-container {
@@ -610,8 +655,49 @@ form {
   align-items: center;
 }
 
+/************ IMAGE INPUT ***********/
+.image-url-container {
+  width: 400px;
+  display: flex;
+}
+.image-url-container label {
+  height: 47px;
+  line-height: 47px;
+  color: #ffffff;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.add-image {
+  width: 300px;
+  padding: 3px;
+  border: 2px solid #00885f;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border 0.2s;
+}
+.add-image:focus {
+  border: 2px solid #00412d;
+}
+
 input {
+  margin: 10px 5px;
+}
+
+.input-img {
+  width: 150px;
+  height: 30px;
   margin: 10px;
+  text-align: center;
+  line-height: 30px;
+  background-color: #005038;
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid #fff;
+}
+.input-img:hover {
+  cursor: pointer;
 }
 
 /************ DESCRIPTION TEXTAREA ***********/
